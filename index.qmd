@@ -1,7 +1,12 @@
 ---
 title: "Data Science for Public Policy"
-subtitle: "Assignment XX"
-author: "Name - NetID"
+subtitle: "Assignment 04"
+author: "Priscila Stisman - prs62 & Maleeha Hameed - mh2203"
+execute: 
+  warning: False
+format: 
+  html: 
+    embed-resources: true
 ---
 
 ## Quarto
