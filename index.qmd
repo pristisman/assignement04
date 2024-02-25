@@ -64,5 +64,19 @@ ggplot(data, aes(x = log(gle_cgdpc), y = 0.1, size = ef_carbp, color = ef_carbp)
 
 ```
 
-```
+
+```{r}
+# Graph 3
+library(ggplot2)
+
+# Assuming your data frame is named data
+ggplot(data, aes(x = factor(ht_region), y = wdi_lifexp, fill = wdi_lifexp)) +
+  stat_summary(fun = "mean", geom = "bar", fill = "lightblue", alpha = 0.7) +
+  labs(title = "Average Life Expectancy by Region",
+       x = "Region",
+       y = "Average Life Expectancy") +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Eastern Europe and post Soviet Union", "Latin America", "North Africa & the Middle East", "Sub-Saharan Africa", "Western Europe and North America", "East Asia", "South-East Asia", "South Asia", "The Pacific", "The Caribbean"))+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
 ```
