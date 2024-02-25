@@ -7,12 +7,20 @@ execute:
 format: 
   html: 
     embed-resources: true
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-**#Exercise 3 
-#4. Try to git add your data file. What message do you receive in the terminal?**
+## **Exercise 3.** 
 
-#hint: Use -f if you really want to add them. #hint: Turn this message off by running #hint: "git config advice.addIgnoredFile false" #The `echo: false` option disables the printing of code (only output is displayed).
+**Try to git add your data file. What message do you receive in the
+terminal?**
+
+#hint: Use -f if you really want to add them. #hint: Turn this message
+off by running #hint: "git config advice.addIgnoredFile false" #The
+`echo: false` option disables the printing of code (only output is
+displayed).
 
 ```{r}
 # Library setup
@@ -24,7 +32,11 @@ library(readr)
 library (haven)
 ```
 
-You can add options to executable code like this
+## **Exercise 4** 
+
+Our visualizations are based on the Quality of Government (QoG)
+Institute Basic Dataset 2023 (add citation). This dataset contains \[add
+more details later\].
 
 ```{r}
 # Read data
@@ -32,6 +44,16 @@ data <- read_dta("Data/idm_qog.dta")
 
 ```
 
+#### Graph 1: People in countries with higher GDP per capita live longer 
+
+This scatter plot shows the correlation between the log of the GDP per
+capita (in US dollars) and the life expectancy in years for XXX
+countries. Except for a few outliers with a higher life expectancy for a
+lower GDP per capita, we find a linear correlation (denoted by a line of
+best fit) between countries with higher GDP per capita and their life
+expectancy in years. This graph confirms the success story of many
+developed countries, globally, where people live longer than 75 years of
+age, on average, given higher annual earnings.
 
 ```{r}
 # Graph 1
@@ -45,7 +67,15 @@ data %>%
   ylab("Life Expectancy")      # Set y-axis label
 ```
 
+#### Graph 2: Countries with higher GDP per capita contribute more to climate change 
 
+A higher GDP per capita does not always tell an optimistic story! With
+climate change increasingly becoming a pressing global policy issue, we
+want to draw attention to the correlation between countries with a
+higher GDP per capita and their contribution to a higher carbon
+footprint of production per year. We use the color scale gradient from
+light blue to indigo and the size of the circle to show the variation in
+the carbon footprint of production.
 
 ```{r}
 # Graph 2
@@ -64,6 +94,15 @@ ggplot(data, aes(x = log(gle_cgdpc), y = 0.1, size = ef_carbp, color = ef_carbp)
 
 ```
 
+#### Graph 3: Cross region variation in how long people live 
+
+Except for Sub Saharan Africa, the rest of the 9 regions of the world
+have an average life expectancy of greater than 60 years. North America
+and Western Europe, where most developed countries are located, fare the
+highest on the average life expectancy. We do not observe much variation
+in life expectancy over time across the different regions as most of the
+variation can be observed at the inter-country level. This graph
+reinforces the findings from Graph 1.
 
 ```{r}
 # Graph 3
@@ -81,6 +120,18 @@ ggplot(data, aes(x = factor(ht_region), y = wdi_lifexp, fill = wdi_lifexp)) +
 
 ```
 
+#### Graph 4: Women make less than 50% of the labor force globally 
+
+We take advantage of the time-series data to capture another important
+policy issue – distribution of female labor force participation across
+all the countries between 2000 and 2021. The line graph shows a steep
+increase in the average female labor force participation with a sharp
+drop in 2020, at the onset of COVID-19. We observe an upward trend after
+2020 until 2021, however, the average female labor force participation
+does not reach the pre-COVID high. Unfortunately, despite multiple
+reforms to improve female labor force participation globally, the share
+of average female labor force participation stands at less than 41.5% of
+the total average labor force participation.
 
 ```{r}
 # Graph 4
