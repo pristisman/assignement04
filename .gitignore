@@ -48,4 +48,9 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-/Users/pristisman/Desktop/Documents/Georgetown/Spring 2024/Intro to Data Science/assignement04/gapminder.dta
+
+
+/Users/pristisman/Desktop/Documents/Georgetown/Spring 2024/Intro to Data Science/assignement04/Data/HNP_StatsCountry.csv
+/Users/pristisman/Desktop/Documents/Georgetown/Spring 2024/Intro to Data Science/assignement04/Data/HNP_StatsData.csv
+
+*.csv
