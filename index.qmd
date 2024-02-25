@@ -9,23 +9,98 @@ format:
     embed-resources: true
 ---
 
-## Quarto
+**#Exercise 3 
+#4. Try to git add your data file. What message do you receive in the terminal?**
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+#hint: Use -f if you really want to add them. #hint: Turn this message off by running #hint: "git config advice.addIgnoredFile false" #The `echo: false` option disables the printing of code (only output is displayed).
 
 ```{r}
-1 + 1
+# Library setup
+library (tidyverse)
+library (dplyr)
+library(ggplot2)
+library(ggthemes)
+library(readr)
+library (haven)
 ```
 
 You can add options to executable code like this
 
 ```{r}
-#| echo: false
-2 * 2
+# Read data
+data <- read_dta("Data/idm_qog.dta")
+
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+# Graph 1
+
+data %>%
+  ggplot() +
+    geom_point(aes(x = log(gle_cgdpc), y =wdi_lifexp)) + 
+  geom_smooth(aes(x = log(gle_cgdpc), y = wdi_lifexp), method = "lm", se = FALSE, color = "red") +
+  theme_minimal() +
+   xlab("Log GDP per Capita") +  # Set x-axis label
+  ylab("Life Expectancy")      # Set y-axis label
+```
+
+
+
+
+```{r}
+# Graph 2
+
+ggplot(data, aes(x = log(gle_cgdpc), y = 0.1, size = ef_carbp, color = ef_carbp), na.rm = TRUE) +
+  geom_point(alpha = 0.7) +
+  scale_size_continuous(range = c(1, 10)) +
+  scale_color_gradient(low = "lightblue", high = "darkblue") +
+  labs(title = "Scatter Plot: Carbon footprint of production and GDP",
+       x = "Log GDP",
+       y = "",
+       size = "Carbon footprint of production",
+       color = "Carbon footprint of production") +
+  guides(size = guide_legend(title = "Carbon footprint of production"))
+
+
+```
+
+
+
+```{r}
+# Graph 3
+library(ggplot2)
+
+# Assuming your data frame is named data
+ggplot(data, aes(x = factor(ht_region), y = wdi_lifexp, fill = wdi_lifexp)) +
+  stat_summary(fun = "mean", geom = "bar", fill = "lightblue", alpha = 0.7) +
+  labs(title = "Average Life Expectancy by Region",
+       x = "Region",
+       y = "Average Life Expectancy") +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Eastern Europe and post Soviet Union", "Latin America", "North Africa & the Middle East", "Sub-Saharan Africa", "Western Europe and North America", "East Asia", "South-East Asia", "South Asia", "The Pacific", "The Caribbean"))+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+
+
+```
+
+
+```{r}
+# Graph 4
+
+average_female_labor_participation <- data %>%
+  group_by(year) %>%
+  summarize(avg_female_labor_participation = mean(wdi_lfpf, na.rm = TRUE))
+
+# Plotting the line plot
+ggplot(average_female_labor_participation, aes(x = year, y = avg_female_labor_participation)) +
+  geom_line() +
+  labs(title = "Average Female Labor Force Participation by Year",
+       x = "Year",
+             y = "Average Female Labor Force Participation")
+
+¡
+
+```
+```
