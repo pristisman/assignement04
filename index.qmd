@@ -80,3 +80,20 @@ ggplot(data, aes(x = factor(ht_region), y = wdi_lifexp, fill = wdi_lifexp)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 
 ```
+
+
+```{r}
+# Graph 4
+
+average_female_labor_participation <- data %>%
+  group_by(year) %>%
+  summarize(avg_female_labor_participation = mean(wdi_lfpf, na.rm = TRUE))
+
+# Plotting the line plot
+ggplot(average_female_labor_participation, aes(x = year, y = avg_female_labor_participation)) +
+  geom_line() +
+  labs(title = "Average Female Labor Force Participation by Year",
+       x = "Year",
+       y = "Average Female Labor Force Participation")
+
+```
