@@ -35,8 +35,9 @@ library (haven)
 ## **Exercise 4** 
 
 Our visualizations are based on the Quality of Government (QoG)
-Institute Basic Dataset 2023 (add citation). This dataset contains \[add
-more details later\].
+Institute Basic Dataset 2023 (QoG, 2023). This dataset contains
+cross-sectional and time-series from 194 countries between 2000 and
+2021.
 
 ```{r}
 # Read data
@@ -47,7 +48,7 @@ data <- read_dta("Data/idm_qog.dta")
 #### Graph 1: People in countries with higher GDP per capita live longer 
 
 This scatter plot shows the correlation between the log of the GDP per
-capita (in US dollars) and the life expectancy in years for XXX
+capita (in US dollars) and the life expectancy in years for 194
 countries. Except for a few outliers with a higher life expectancy for a
 lower GDP per capita, we find a linear correlation (denoted by a line of
 best fit) between countries with higher GDP per capita and their life
@@ -148,3 +149,11 @@ ggplot(average_female_labor_participation, aes(x = year, y = avg_female_labor_pa
        y = "Average Female Labor Force Participation")
 
 ```
+
+## ***References***
+
+Dahlberg, Stefan, Aksel Sundström, Sören Holmberg, Bo Rothstein, Natalia
+Alvarado Pachon, Cem Mert Dalli & Yente Meijers. 2023. The Quality of
+Government Basic Dataset, version Jan23. University of Gothenburg: The
+Quality of Government Institute, https://www.gu.se/en/quality-government
+doi:10.18157/qogbasjan23
